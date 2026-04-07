@@ -272,7 +272,9 @@ a:hover {
 .motivation-grid .panel-caption {
   margin-top: auto;
   min-height: 5.8em;
-  text-align: center;
+  width: 100%;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .contrib-content {
