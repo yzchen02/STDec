@@ -203,23 +203,23 @@ a:hover {
 
 .highlight-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(240px, 0.72fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.82fr);
   gap: 1.15rem;
-  align-items: center;
+  align-items: stretch;
 }
 
 .highlight-figure {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 300px;
+  min-height: 285px;
   padding: 0;
   background: transparent;
 }
 
 .highlight-figure img {
   width: 100%;
-  max-width: 700px;
+  max-width: 620px;
   height: auto;
   object-fit: contain;
   object-position: center center;
@@ -229,7 +229,10 @@ a:hover {
 .highlight-metrics {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.8rem;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0.7rem;
+  min-height: 285px;
+  height: 100%;
 }
 
 .motivation-grid .panel-card > a {
@@ -299,8 +302,11 @@ a:hover {
 .metric-card {
   border: 1px solid var(--accent-blue-soft-strong);
   background: #fff;
-  padding: 0.9rem 0.75rem;
+  padding: 0.85rem 0.75rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .metric-value {
@@ -555,6 +561,10 @@ pre {
 
   .highlight-figure img {
     max-width: 100%;
+  }
+
+  .highlight-metrics {
+    min-height: 0;
   }
 
   .motivation-grid .panel-caption {
