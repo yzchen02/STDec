@@ -44,20 +44,11 @@ a:hover {
   padding-right: 0.75rem;
 }
 
-.hero-logo-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 0.65rem;
-}
-
-.hero-logo {
-  width: 78px;
-  height: 78px;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 18px rgba(255, 94, 77, 0.14));
-}
-
 .publication-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
   color: var(--text-primary);
   line-height: 1.14;
   margin: 0 auto 0.35rem !important;
@@ -70,6 +61,18 @@ a:hover {
   word-break: normal;
   overflow-wrap: normal;
   text-wrap: balance;
+}
+
+.title-logo {
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 14px rgba(255, 94, 77, 0.14));
+}
+
+.publication-title span {
+  display: inline-block;
 }
 
 .accent-mark {
@@ -584,14 +587,16 @@ pre {
 }
 
 @media screen and (max-width: 768px) {
-  .hero-logo {
-    width: 62px;
-    height: 62px;
-  }
-
   .publication-title {
+    gap: 0.5rem;
     font-size: 1.58rem;
     max-width: 100%;
+  }
+
+  .title-logo {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
   }
 
   .metric-grid {
