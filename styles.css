@@ -233,6 +233,8 @@ a:hover {
   gap: 0.45rem;
   min-height: 220px;
   height: 100%;
+  width: 92%;
+  justify-self: center;
 }
 
 .motivation-grid .panel-card > a {
