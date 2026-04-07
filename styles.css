@@ -196,6 +196,10 @@ a:hover {
   margin: 0 auto 0.75rem;
 }
 
+.teaser-media-small {
+  max-width: 420px;
+}
+
 .teaser-media img {
   display: block;
   width: 100%;
@@ -230,6 +234,10 @@ a:hover {
 .motivation-subgrid,
 .qualitative-subgrid {
   margin-top: 1rem;
+}
+
+.motivation-intro {
+  margin-bottom: 1rem;
 }
 
 .metric-grid {
@@ -396,6 +404,10 @@ pre {
   }
 
   .teaser-media {
+    max-width: 100%;
+  }
+
+  .teaser-media-small {
     max-width: 100%;
   }
 }
