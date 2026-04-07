@@ -202,7 +202,8 @@ a:hover {
 }
 
 .highlight-combo {
-  display: flex;
+  display: grid;
+  grid-template-columns: 60fr 40fr;
   border: none;
   background: transparent;
   overflow: hidden;
@@ -219,12 +220,11 @@ a:hover {
 }
 
 .highlight-pane--radar {
-  flex: 0 0 57%;
   border-right: 1px solid #e9eef5;
 }
 
 .highlight-pane--case {
-  flex: 0 0 43%;
+  min-width: 0;
 }
 
 .highlight-pane img {
@@ -561,23 +561,12 @@ pre {
     max-width: 100%;
   }
 
-  .highlight-combo {
-    flex-direction: column;
-    min-height: 0;
-  }
-
   .highlight-pane {
     min-height: 240px;
   }
 
   .highlight-pane--radar {
-    flex-basis: auto;
-    border-right: none;
-    border-bottom: 1px solid #e9eef5;
-  }
-
-  .highlight-pane--case {
-    flex-basis: auto;
+    border-right: 1px solid #e9eef5;
   }
 
   .motivation-grid .panel-caption {
