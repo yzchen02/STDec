@@ -206,24 +206,25 @@ a:hover {
   border: 1px solid var(--border-color);
   background: #fff;
   overflow: hidden;
+  min-height: 360px;
 }
 
 .highlight-pane {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 320px;
-  padding: 0.25rem;
+  min-height: 360px;
+  padding: 0;
   background: #fff;
 }
 
 .highlight-pane--radar {
-  flex: 0 0 58%;
+  flex: 0 0 57%;
   border-right: 1px solid var(--border-color);
 }
 
 .highlight-pane--case {
-  flex: 0 0 42%;
+  flex: 0 0 43%;
 }
 
 .highlight-pane img {
@@ -231,6 +232,7 @@ a:hover {
   height: 100%;
   object-fit: contain;
   object-position: center center;
+  display: block;
 }
 
 .highlight-pane--case img {
@@ -264,7 +266,7 @@ a:hover {
 
 .teaser-caption {
   max-width: 880px;
-  margin: 0.5rem auto 0;
+  margin: 0.65rem auto 0;
   text-align: left;
 }
 
@@ -560,10 +562,11 @@ pre {
 
   .highlight-combo {
     flex-direction: column;
+    min-height: 0;
   }
 
   .highlight-pane {
-    min-height: 250px;
+    min-height: 240px;
   }
 
   .highlight-pane--radar {
