@@ -191,13 +191,26 @@ a:hover {
   background: #fff;
 }
 
+.teaser-grid .column,
+.motivation-grid .column {
+  display: flex;
+}
+
+.teaser-grid .panel-card,
+.motivation-grid .panel-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .teaser-media {
-  max-width: 760px;
+  max-width: 700px;
   margin: 0 auto 0.75rem;
+  width: 100%;
 }
 
 .teaser-media-small {
-  max-width: 420px;
+  max-width: 100%;
 }
 
 .teaser-media img {
@@ -206,11 +219,55 @@ a:hover {
   margin: 0 auto;
 }
 
+.teaser-grid .teaser-media a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 10;
+  padding: 0.45rem;
+  border: 1px solid var(--border-color);
+  background: #fff;
+}
+
+.teaser-grid .teaser-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-bottom: 0;
+}
+
+.motivation-grid .panel-card > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 10;
+  padding: 0.35rem;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.motivation-grid .panel-card > a img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-bottom: 0;
+}
+
 .panel-caption {
   margin-top: 0.3rem;
   font-size: 0.97rem;
   color: var(--text-secondary);
   line-height: 1.55;
+}
+
+.teaser-grid .panel-caption {
+  margin-top: auto;
+}
+
+.motivation-grid .panel-caption {
+  margin-top: auto;
+  min-height: 5.8em;
 }
 
 .contrib-content {
@@ -301,8 +358,24 @@ a:hover {
   color: var(--text-primary);
 }
 
+.result-table-wide {
+  font-size: 0.8rem;
+}
+
+.result-table-wide th,
+.result-table-wide td {
+  padding: 0.28rem 0.3rem;
+}
+
 .result-table th:first-child,
 .result-table td:first-child {
+  text-align: left;
+}
+
+.result-table .group-row td {
+  background: #f3f7fc;
+  color: var(--text-primary);
+  font-weight: 700;
   text-align: left;
 }
 
@@ -409,6 +482,10 @@ pre {
 
   .teaser-media-small {
     max-width: 100%;
+  }
+
+  .motivation-grid .panel-caption {
+    min-height: 0;
   }
 }
 
