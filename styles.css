@@ -331,7 +331,7 @@ a:hover {
   max-width: 880px;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
+  text-align: left;
   text-wrap: balance;
 }
 
@@ -350,7 +350,7 @@ a:hover {
 .result-table td {
   border: 1px solid var(--border-color);
   padding: 0.34rem 0.38rem;
-  text-align: center;
+  text-align: center !important;
   vertical-align: middle;
   line-height: 1.24;
   white-space: nowrap;
@@ -359,6 +359,7 @@ a:hover {
 .result-table thead th {
   background: #f7fbff;
   color: var(--text-primary);
+  text-align: center !important;
 }
 
 .result-table-wide {
@@ -374,7 +375,7 @@ a:hover {
   background: #f3f7fc;
   color: var(--text-primary);
   font-weight: 700;
-  text-align: center;
+  text-align: center !important;
 }
 
 .result-table .baseline-row td {
