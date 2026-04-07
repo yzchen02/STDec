@@ -343,7 +343,7 @@ a:hover {
 
 .metric-value {
   font-family: "Castoro", serif;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--accent-blue-strong);
   line-height: 1.15;
@@ -352,7 +352,7 @@ a:hover {
 .metric-label {
   margin-top: 0.16rem;
   color: #4b5563;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   line-height: 1.34;
 }
 
