@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STDec: Spatio-Temporal Stability Guided Decoding for dLLMs</title>
+    <meta
+      name="description"
+      content="Project page for STDec: Spatio-Temporal Stability Guided Decoding for dLLMs."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top">STDec</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#overview">Overview</a>
+          <a href="#motivation">Motivation</a>
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#analysis">Analysis</a>
+          <a href="#case-study">Case Study</a>
+          <a href="#citation">Citation</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero section">
+          <div class="hero-copy">
+            <p class="eyebrow">ACL 2026 / arXiv Preprint Project Page</p>
+            <h1>STDec: Spatio-Temporal Stability Guided Decoding for dLLMs</h1>
+            <p class="authors">
+              Yuzhe Chen<sup>1</sup>
+              <span class="divider-dot"></span>
+              Jiale Cao<sup>1</sup>
+              <span class="divider-dot"></span>
+              Xuyang Liu<sup>2</sup>
+              <span class="divider-dot"></span>
+              Jin Xie<sup>3</sup>
+              <span class="divider-dot"></span>
+              Aiping Yang<sup>1</sup>
+              <span class="divider-dot"></span>
+              Yanwei Pang<sup>1</sup>
+            </p>
+            <p class="affiliations">
+              <span><sup>1</sup>Tianjin University</span>
+              <span><sup>2</sup>Sichuan University</span>
+              <span><sup>3</sup>Chongqing University</span>
+            </p>
+            <p class="hero-summary">
+              STDec is a training-free decoding strategy for diffusion large
+              language models that replaces a single global confidence
+              threshold with token-adaptive thresholds driven by local decoded
+              neighborhoods and cross-step prediction consistency. Across
+              textual reasoning and multimodal understanding benchmarks, it
+              substantially improves throughput while preserving comparable task
+              quality.
+            </p>
+
+            <div class="hero-actions">
+              <a
+                class="button primary"
+                href="https://github.com/yzchen02/STDec"
+                target="_blank"
+                rel="noreferrer"
+                >Code</a
+              >
+              <span
+                class="button disabled"
+                aria-disabled="true"
+                title="Public paper link coming soon"
+                >Paper (Coming Soon)</span
+              >
+              <a class="button secondary" href="#citation">Citation</a>
+            </div>
+          </div>
+
+          <aside class="hero-aside">
+            <div class="hero-stats">
+              <article class="stat-card">
+                <span class="stat-label">Peak long-context speedup</span>
+                <strong>47.80×</strong>
+                <p>On GPQA with LLaDA-8B-Instruct at 1024-token generation.</p>
+              </article>
+              <article class="stat-card">
+                <span class="stat-label">Average LLaDA speedup</span>
+                <strong>7.60×</strong>
+                <p>Across five textual reasoning benchmarks with no score drop.</p>
+              </article>
+              <article class="stat-card">
+                <span class="stat-label">Average LaViDa speedup</span>
+                <strong>3.57×</strong>
+                <p>On multimodal understanding while keeping comparable scores.</p>
+              </article>
+            </div>
+          </aside>
+        </section>
+
+        <section id="overview" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Overview</p>
+            <h2>What STDec adds to dLLM decoding</h2>
+            <p>
+              Instead of committing tokens with one global rule, STDec uses the
+              structure that naturally emerges during denoising: decoded regions
+              expand locally, and token identities often stabilize before they
+              are officially committed.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <article class="feature-card">
+              <h3>Spatial stability as a decoding prior</h3>
+              <p>
+                Newly decoded tokens usually appear near already decoded
+                neighbors. STDec turns this observation into a token-adaptive
+                threshold map rather than relying on a single global threshold.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Temporal consistency as early commitment signal</h3>
+              <p>
+                When a token keeps predicting the same ID across denoising
+                steps, STDec relaxes its threshold and decodes stable tokens
+                earlier without retraining the model.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Training-free and cache-compatible</h3>
+              <p>
+                The method plugs into existing dLLM inference pipelines and
+                composes with cache-based accelerators, improving throughput
+                across text and multimodal tasks.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="motivation" class="section split-section">
+          <div class="section-heading compact">
+            <p class="eyebrow">Motivation</p>
+            <h2>Why global thresholds leave speed on the table</h2>
+            <p>
+              Standard top-k or fixed-threshold decoding treats every masked
+              token the same, even though dLLM denoising is highly structured in
+              both space and time.
+            </p>
+            <ul class="text-list">
+              <li>
+                Global thresholding ignores whether a masked position is already
+                surrounded by decoded neighbors.
+              </li>
+              <li>
+                Existing policies largely miss the fact that many tokens become
+                ID-stable several steps before they are decoded.
+              </li>
+              <li>
+                STDec uses both signals to lower thresholds only where decoding
+                is already locally safe.
+              </li>
+            </ul>
+          </div>
+
+          <a
+            class="figure-card figure-card--large"
+            href="assets/figures/difference.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="assets/previews/difference.png"
+              alt="Comparison of top-k, anchor-based, and STDec decoding strategies."
+            />
+            <span class="figure-caption"
+              >Figure: Comparison with existing decoding strategies</span
+            >
+          </a>
+        </section>
+
+        <section id="method" class="section split-section method-section">
+          <a
+            class="figure-card figure-card--wide"
+            href="assets/figures/method.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="assets/previews/method.png"
+              alt="Overview of the STDec decoding pipeline."
+            />
+            <span class="figure-caption">Figure: STDec pipeline overview</span>
+          </a>
+
+          <div class="section-heading compact">
+            <p class="eyebrow">Method</p>
+            <h2>Spatio-temporal thresholding in plain English</h2>
+            <div class="method-steps">
+              <article>
+                <h3>1. Spatial-aware decoding</h3>
+                <p>
+                  STDec starts with a threshold map: masked tokens get a high
+                  threshold, decoded tokens get a low threshold. A Gaussian
+                  smoothing pass then propagates low-threshold influence into
+                  nearby masked regions, so positions surrounded by decoded
+                  neighbors become easier to commit.
+                </p>
+              </article>
+              <article>
+                <h3>2. Temporal-aware decoding</h3>
+                <p>
+                  If a token keeps the same predicted ID across consecutive
+                  denoising steps, STDec relaxes its threshold with a simple
+                  factor. Stable tokens can therefore be decoded earlier while
+                  clearly uncertain ones remain conservative.
+                </p>
+              </article>
+              <article>
+                <h3>3. Commit with token-adaptive thresholds</h3>
+                <p>
+                  The final per-token threshold combines the spatial map with
+                  temporal relaxation. Tokens are decoded when their confidence
+                  exceeds their own adaptive threshold, not a universal one-size
+                  rule.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="results" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Main Results</p>
+            <h2>Faster decoding across text and multimodal benchmarks</h2>
+            <p>
+              STDec improves throughput on Dream, LLaDA, and LaViDa while
+              keeping generation scores broadly comparable. The headline pattern
+              is consistent: better efficiency-quality trade-offs than simple
+              step reduction and stronger throughput than prior decoding
+              accelerators.
+            </p>
+          </div>
+
+          <div class="results-layout">
+            <a
+              class="figure-card"
+              href="assets/figures/radar.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="assets/previews/radar.png"
+                alt="Radar chart comparing STDec throughput against other approaches."
+              />
+              <span class="figure-caption"
+                >Figure: Throughput comparison over eight benchmarks</span
+              >
+            </a>
+
+            <div class="metric-board">
+              <article class="metric-card accent-sand">
+                <span class="metric-title">Dream-7B-Instruct</span>
+                <strong>10.03× average speedup</strong>
+                <p>
+                  85.63 TPS on average, with standout gains such as 27.86× on
+                  GPQA and 13.88× on MBPP.
+                </p>
+              </article>
+              <article class="metric-card accent-blue">
+                <span class="metric-title">LLaDA-8B-Instruct</span>
+                <strong>7.60× average speedup</strong>
+                <p>
+                  Reaches 80.47 TPS on MBPP and 92.08 TPS on GPQA, while
+                  keeping benchmark scores comparable to the vanilla decoder.
+                </p>
+              </article>
+              <article class="metric-card accent-olive">
+                <span class="metric-title">LaViDa-Reason</span>
+                <strong>3.57× average speedup</strong>
+                <p>
+                  Multimodal understanding throughput rises from 5.57 to 19.86
+                  TPS on average across MathVerse, MathVision, and MathVista.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading compact">
+            <p class="eyebrow">Headline Numbers</p>
+            <h2>Selected results from the paper</h2>
+          </div>
+          <div class="mini-metrics-grid">
+            <article class="mini-metric">
+              <span>Dream on GPQA</span>
+              <strong>27.86×</strong>
+              <p>193.62 TPS vs. 6.95 TPS baseline.</p>
+            </article>
+            <article class="mini-metric">
+              <span>LLaDA on MBPP</span>
+              <strong>14.17×</strong>
+              <p>80.47 TPS with a score of 38.40.</p>
+            </article>
+            <article class="mini-metric">
+              <span>LLaDA on GPQA</span>
+              <strong>14.76×</strong>
+              <p>92.08 TPS while keeping score at 29.29.</p>
+            </article>
+            <article class="mini-metric">
+              <span>LaViDa on MathVista</span>
+              <strong>4.36×</strong>
+              <p>24.66 TPS with only a small score change.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="scalability" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Scalability and Compatibility</p>
+            <h2>Long contexts and cache-based accelerators</h2>
+            <p>
+              STDec scales favorably with longer generations and remains
+              complementary to cache-based acceleration. Instead of replacing
+              dKV-Cache or Prefix-DLM, it stacks on top of them for additional
+              gains.
+            </p>
+          </div>
+
+          <div class="pair-grid">
+            <a
+              class="figure-card"
+              href="assets/figures/speed_bars_llada_score_label.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="assets/previews/speed_bars_llada_score_label.png"
+                alt="LLaDA speed bars with STDec and dKV-Cache."
+              />
+              <span class="figure-caption"
+                >Figure: LLaDA + dKV-Cache composition</span
+              >
+            </a>
+            <a
+              class="figure-card"
+              href="assets/figures/speed_bars_lavida_score_label.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="assets/previews/speed_bars_lavida_score_label.png"
+                alt="LaViDa speed bars with STDec and Prefix-DLM."
+              />
+              <span class="figure-caption"
+                >Figure: LaViDa + Prefix-DLM composition</span
+              >
+            </a>
+          </div>
+
+          <div class="card-grid two-up">
+            <article class="feature-card">
+              <h3>Long-context textual reasoning</h3>
+              <p>
+                On 1024-token generation with LLaDA-8B-Instruct, STDec improves
+                throughput by 10.96× to 47.80×. The strongest result is GPQA,
+                where throughput rises from 3.53 to 168.73 TPS with the same
+                score.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Composable with caching</h3>
+              <p>
+                On LLaDA, STDec stacked with dKV-Cache reaches 22.20× speedup
+                on GPQA and 17.03× on MBPP versus the vanilla baseline. On
+                LaViDa, it consistently adds speed on top of Prefix-DLM with
+                comparable task quality.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="analysis" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Analysis and Ablation</p>
+            <h2>The stability signals are visible in practice</h2>
+            <p>
+              The analysis section of the paper shows why STDec works:
+              currently decoded tokens are often surrounded by already decoded
+              neighbors, and their predicted token IDs frequently stabilize
+              before the final commit step.
+            </p>
+          </div>
+
+          <div class="pair-grid">
+            <a
+              class="figure-card"
+              href="assets/figures/spatial_consistency_comparison.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="assets/previews/spatial_consistency_comparison.png"
+                alt="Spatial consistency analysis."
+              />
+              <span class="figure-caption"
+                >Figure: Decoded tokens usually emerge near decoded
+                neighbors</span
+              >
+            </a>
+            <a
+              class="figure-card"
+              href="assets/figures/temporal_consistency_comparison.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="assets/previews/temporal_consistency_comparison.png"
+                alt="Temporal consistency analysis."
+              />
+              <span class="figure-caption"
+                >Figure: Many tokens become ID-stable before decoding</span
+              >
+            </a>
+          </div>
+
+          <div class="analysis-copy">
+            <p>
+              On HumanEval and GSM8K, more than 90% of decoded tokens are near
+              at least one previously decoded neighbor in a small local radius,
+              and a large fraction already maintain the same predicted ID across
+              earlier denoising steps. Those two signals make adaptive
+              thresholding both intuitive and effective.
+            </p>
+          </div>
+
+          <div class="section-heading compact">
+            <h3>Ablation gallery</h3>
+            <p>
+              HumanEval ablations show that the default setting
+              <code>τ_high = 0.9</code>, <code>τ_low = 0.3</code>,
+              <code>σ = 1.0</code>, and <code>α = 0.85</code> offers the best
+              balance between throughput and score.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <a
+              class="figure-card"
+              href="assets/figures/ablation_humaneval_high_threshold.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="assets/previews/ablation_humaneval_high_threshold.png"
+                alt="Ablation of the high threshold on HumanEval."
+              />
+              <span class="figure-caption">High threshold τ_high</span>
+            </a>
+            <a
+              class="figure-card"
+              href="assets/figures/ablation_humaneval_low_threshold.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="assets/previews/ablation_humaneval_low_threshold.png"
+                alt="Ablation of the low threshold on HumanEval."
+              />
+              <span class="figure-caption">Low threshold τ_low</span>
+            </a>
+            <a
+              class="figure-card"
+              href="assets/figures/ablation_humaneval_sigma.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="assets/previews/ablation_humaneval_sigma.png"
+                alt="Ablation of sigma on HumanEval."
+              />
+              <span class="figure-caption">Gaussian smoothing σ</span>
+            </a>
+            <a
+              class="figure-card"
+              href="assets/figures/ablation_humaneval_relax_factor.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="assets/previews/ablation_humaneval_relax_factor.png"
+                alt="Ablation of the temporal relaxation factor on HumanEval."
+              />
+              <span class="figure-caption">Relaxation factor α</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="case-study" class="section split-section case-study">
+          <div class="section-heading compact">
+            <p class="eyebrow">Qualitative Case Study</p>
+            <h2>Faster outputs without changing the story</h2>
+            <p>
+              Qualitative examples in the paper show that STDec keeps the final
+              semantic content intact while shortening the time needed to get
+              there.
+            </p>
+            <div class="quote-card">
+              <h3>Multimodal example</h3>
+              <p>
+                On LaViDa-Reason, STDec preserves the same key objects and
+                relative relations in the scene description while cutting
+                decoding time from 99.17 seconds to 34.41 seconds, a 2.88×
+                speedup.
+              </p>
+            </div>
+            <div class="quote-card">
+              <h3>Text reasoning takeaway</h3>
+              <p>
+                On GSM8K examples with Dream and LLaDA, STDec reaches the same
+                final answer and very similar reasoning content, but commits
+                locally stable tokens earlier and finishes several times faster.
+              </p>
+            </div>
+          </div>
+
+          <a
+            class="figure-card figure-card--large"
+            href="assets/figures/visual.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="assets/previews/visual.png"
+              alt="Multimodal case study comparing LaViDa-Reason with and without STDec."
+            />
+            <span class="figure-caption"
+              >Figure: Multimodal case study on LaViDa-Reason</span
+            >
+          </a>
+        </section>
+
+        <section id="citation" class="section citation-section">
+          <div class="section-heading compact">
+            <p class="eyebrow">Citation</p>
+            <h2>BibTeX</h2>
+            <p>
+              If you find STDec useful in your work, please consider citing the
+              project.
+            </p>
+          </div>
+
+          <div class="citation-box">
+            <button class="copy-button" type="button" data-copy-target="bibtex">
+              Copy
+            </button>
+            <pre id="bibtex"><code>@article{chen2026stdec,
+  title={STDec: Spatio-Temporal Stability Guided Decoding for dLLMs},
+  author={Chen, Yuzhe and Cao, Jiale and Liu, Xuyang and Xie, Jin and Yang, Aiping and Pang, Yanwei},
+  journal={arXiv preprint},
+  year={2026}
+}</code></pre>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
