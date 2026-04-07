@@ -328,11 +328,11 @@ a:hover {
   font-weight: 400;
   color: var(--text-primary);
   margin-bottom: 0.4rem;
-  max-width: 880px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: none;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
   text-align: left;
-  text-wrap: balance;
 }
 
 .table-wrap {
