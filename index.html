@@ -128,7 +128,7 @@
               <a href="assets/figures/difference.pdf" target="_blank" rel="noopener">
                 <img src="images/motivation.png" alt="STDec motivation" loading="lazy">
               </a>
-              <p class="panel-caption"><strong>Thresholding gap.</strong> Global thresholding and anchor-based policies only partially capture the structured signals that emerge during denoising.</p>
+              <p class="panel-caption"><strong>Thresholding gap.</strong> Top-k and anchor-based decoding policies only partially leverage the spatio-temporal stability signals that emerge during denoising.</p>
             </div>
           </div>
           <div class="column is-4">
@@ -136,7 +136,7 @@
               <a href="assets/figures/spatial_consistency_comparison.pdf" target="_blank" rel="noopener">
                 <img src="images/spatial_consistency.png" alt="Spatial consistency analysis" loading="lazy">
               </a>
-              <p class="panel-caption"><strong>Spatial stability.</strong> Decoded tokens usually appear near existing decoded neighbors, suggesting that nearby local neighborhoods can safely lower thresholds.</p>
+              <p class="panel-caption"><strong>Spatial stability.</strong> More than 90% of decoded tokens appear near at least one previously decoded neighbor, suggesting that locally surrounded positions are easier and safer to decode.</p>
             </div>
           </div>
           <div class="column is-4">
@@ -144,7 +144,7 @@
               <a href="assets/figures/temporal_consistency_comparison.pdf" target="_blank" rel="noopener">
                 <img src="images/temporal_consistency.png" alt="Temporal consistency analysis" loading="lazy">
               </a>
-              <p class="panel-caption"><strong>Temporal stability.</strong> Many tokens keep the same predicted ID for several denoising steps before final decoding, indicating that stable tokens can be committed earlier.</p>
+              <p class="panel-caption"><strong>Temporal stability.</strong> Nearly 95% of decoded tokens remain Top-1 ID-stable for at least one earlier step, indicating that many stable tokens can be committed before the final decoding step.</p>
             </div>
           </div>
         </div>
