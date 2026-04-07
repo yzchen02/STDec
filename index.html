@@ -37,13 +37,16 @@
     <section class="hero stdec-hero">
       <div class="hero-body">
         <div class="container is-max-desktop has-text-centered">
+          <div class="hero-logo-wrap">
+            <img src="images/logo-startup.png" alt="STDec logo" class="hero-logo" loading="eager">
+          </div>
           <h1 class="title is-1 publication-title">
             STDec: Spatio-Temporal Stability Guided Decoding for dLLMs
           </h1>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block">Yuzhe Chen<sup>1</sup>,</span>
-            <span class="author-block">Jiale Cao<sup>1</sup>,</span>
+            <span class="author-block">Jiale Cao<sup>1,&#9993;</sup>,</span>
             <span class="author-block">Xuyang Liu<sup>2</sup>,</span>
             <span class="author-block">Jin Xie<sup>3</sup>,</span>
             <span class="author-block">Aiping Yang<sup>1</sup>,</span>
@@ -56,6 +59,11 @@
             <span class="author-block"><sup>3</sup>Chongqing University</span>
           </div>
 
+          <p class="author-note">
+            <sup>&#9993;</sup> Corresponding author:
+            <a href="mailto:connor@tju.edu.cn">connor@tju.edu.cn</a>
+          </p>
+
           <div class="publication-links">
             <span class="button is-light is-static" title="Public paper link coming soon">
               <span class="icon"><i class="fas fa-file-pdf"></i></span>
@@ -65,7 +73,7 @@
               <span class="icon"><i class="ai ai-arxiv"></i></span>
               <span>arXiv</span>
             </span>
-            <a href="https://github.com/yzchen02/STDec" target="_blank" rel="noopener" class="button is-light">
+            <a href="https://yzchen02.github.io/STDec/" target="_blank" rel="noopener" class="button is-light">
               <span class="icon"><i class="fab fa-github"></i></span>
               <span>Code</span>
             </a>
@@ -128,7 +136,7 @@
               <a href="assets/figures/difference.pdf" target="_blank" rel="noopener">
                 <img src="images/motivation.png" alt="STDec motivation" loading="lazy">
               </a>
-              <p class="panel-caption"><strong>Thresholding gap.</strong> Top-k and anchor-based decoding policies only partially leverage the spatio-temporal stability signals that emerge during denoising.</p>
+              <p class="panel-caption"><strong>Comparison with existing decoding strategies.</strong> Top-k and anchor-based decoding policies only partially leverage the spatio-temporal stability signals that emerge during denoising.</p>
             </div>
           </div>
           <div class="column is-4">
@@ -136,7 +144,7 @@
               <a href="assets/figures/spatial_consistency_comparison.pdf" target="_blank" rel="noopener">
                 <img src="images/spatial_consistency.png" alt="Spatial consistency analysis" loading="lazy">
               </a>
-              <p class="panel-caption"><strong>Spatial stability.</strong> More than 90% of decoded tokens appear near at least one previously decoded neighbor, suggesting that locally surrounded positions are easier and safer to decode.</p>
+              <p class="panel-caption"><strong>Spatial stability.</strong> More than 90% of decoded tokens appear near at least one previously decoded neighbor, suggesting that locally surrounded positions are safer to be decoded.</p>
             </div>
           </div>
           <div class="column is-4">
@@ -144,7 +152,7 @@
               <a href="assets/figures/temporal_consistency_comparison.pdf" target="_blank" rel="noopener">
                 <img src="images/temporal_consistency.png" alt="Temporal consistency analysis" loading="lazy">
               </a>
-              <p class="panel-caption"><strong>Temporal stability.</strong> Nearly 95% of decoded tokens remain Top-1 ID-stable for at least one earlier step, indicating that many stable tokens can be committed before the final decoding step.</p>
+              <p class="panel-caption"><strong>Temporal stability.</strong> Nearly 95% of decoded tokens remain Top-1 ID-stable for at least one earlier step, indicating that many stable tokens can be decoded before the final decoding step.</p>
             </div>
           </div>
         </div>

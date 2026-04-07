@@ -44,6 +44,19 @@ a:hover {
   padding-right: 0.75rem;
 }
 
+.hero-logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.65rem;
+}
+
+.hero-logo {
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(255, 94, 77, 0.14));
+}
+
 .publication-title {
   color: var(--text-primary);
   line-height: 1.14;
@@ -571,6 +584,11 @@ pre {
 }
 
 @media screen and (max-width: 768px) {
+  .hero-logo {
+    width: 62px;
+    height: 62px;
+  }
+
   .publication-title {
     font-size: 1.58rem;
     max-width: 100%;
