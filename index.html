@@ -80,28 +80,16 @@
 
     <section class="section is-light">
       <div class="container is-max-desktop">
-        <div class="columns is-variable is-5 teaser-grid">
-          <div class="column is-7">
-            <div class="panel-card">
-              <div class="teaser-media">
-                <a href="assets/figures/radar.pdf" target="_blank" rel="noopener">
-                  <img src="images/teaser.png" alt="STDec teaser" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="column is-5">
-            <div class="panel-card">
-              <div class="teaser-media teaser-media-small">
-                <a href="assets/figures/visual.pdf" target="_blank" rel="noopener">
-                  <img src="images/qualitative.png" alt="STDec qualitative preview" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
+        <div class="highlight-combo">
+          <a class="highlight-pane highlight-pane--radar" href="assets/figures/radar.pdf" target="_blank" rel="noopener">
+            <img src="images/teaser.png" alt="STDec teaser" loading="lazy">
+          </a>
+          <a class="highlight-pane highlight-pane--case" href="assets/figures/visual.pdf" target="_blank" rel="noopener">
+            <img src="images/qualitative.png" alt="STDec qualitative preview" loading="lazy">
+          </a>
         </div>
         <p class="panel-caption teaser-caption">
-          <strong>Teaser of STDec.</strong> The left figure summarizes the main throughput gains across textual reasoning and multimodal understanding benchmarks, while the right figure previews a LaViDa-Reason case study where STDec preserves key semantics and object relations but reduces decoding time from <strong>99.17s</strong> to <strong>34.41s</strong>.
+          <strong>Highlight of STDec.</strong> Compared to existing dLLM acceleration methods, STDec achieves <strong>10.03×</strong> and <strong>7.60×</strong> average speedups on Dream and LLaDA, delivers <strong>3.57×</strong> average speedup on LaViDa-Reason, and reaches up to <strong>47.80×</strong> long-context acceleration while preserving comparable task performance.
         </p>
       </div>
     </section>
@@ -190,7 +178,7 @@
         </div>
 
         <div class="exp-block">
-          <div class="exp-title">Main textual reasoning results with two representative dLLMs. Dream-7B-Instruct is shown on the left, and LLaDA-8B-Instruct is shown on the right.</div>
+          <div class="exp-title">Main textual reasoning results on Dream-7B-Instruct and LLaDA-8B-Instruct.</div>
           <div class="table-wrap">
             <table class="table is-bordered is-fullwidth result-table result-table-wide">
               <thead>
@@ -411,7 +399,7 @@
         </div>
 
         <div class="exp-block">
-          <div class="exp-title">Main multimodal understanding results on LaViDa-Reason across three math-oriented vision-language benchmarks.</div>
+          <div class="exp-title">Main multimodal understanding results on LaViDa-Reason.</div>
           <div class="table-wrap">
             <table class="table is-bordered is-fullwidth result-table">
               <thead>
@@ -562,22 +550,75 @@
     <section class="section is-light">
       <div class="container is-max-desktop">
         <h2 class="title is-3 section-title has-text-centered">Case Study</h2>
-        <div class="columns is-variable is-5">
-          <div class="column is-6">
-            <div class="status-card">
-              <div class="status-box">
-                <span class="status-tag muted">Question</span>
-                <h3>Case study on GSM8K with LLaDA-8B-Instruct</h3>
-                <p>Lily can run 12 kilometers per hour for 4 hours. After that, she runs 6 kilometers per hour. How many kilometers can she run in 8 hours?</p>
+        <div class="case-block">
+          <div class="case-question">
+            <span class="status-tag muted">Question 1</span>
+            <h3>Case study on GSM8K with LLaDA-8B-Instruct</h3>
+            <p>Lily can run 12 kilometers per hour for 4 hours. After that, she runs 6 kilometers per hour. How many kilometers can she run in 8 hours?</p>
+          </div>
+          <div class="columns is-variable is-5 case-columns">
+            <div class="column is-6">
+              <div class="case-answer">
+                <div class="case-answer-head">LLaDA-8B-Instruct <span>12.04 secs</span></div>
+                <div class="case-answer-body">
+                  <p>To determine how many kilometers Lily can run in 8 hours, we need to break down the problem into two parts: the distance she runs in the first 4 hours and the distance she runs in the next 4 hours.</p>
+                  <p>First, let's calculate the distance she runs in the first 4 hours:</p>
+                  <p>- She runs 12 kilometers per hour for 4 hours.<br>- Distance = Speed × Time<br>- Distance in the first 4 hours = 12 km/h × 4 h = 48 km</p>
+                  <p>Next, let's calculate the distance she runs in the next 4 hours:</p>
+                  <p>- She runs 6 kilometers per hour for 4 hours.<br>- Distance = Speed × Time<br>- Distance in the next 4 hours = 6 km/h × 4 h = 24 km</p>
+                  <p>Now, we add the distances from both parts to find the total distance she can run in 8 hours:</p>
+                  <p>- Total distance = Distance in the first 4 hours + Distance in the next 4 hours<br>- Total distance = 48 km + 24 km = 72 km</p>
+                  <p>Therefore, Lily can run a total of 72 kilometers in 8 hours.</p>
+                </div>
+              </div>
+            </div>
+            <div class="column is-6">
+              <div class="case-answer case-answer-ours">
+                <div class="case-answer-head">+ STDec <span>2.55 secs (4.72×)</span></div>
+                <div class="case-answer-body">
+                  <p>To determine how many kilometers Lily can run in 8 hours, we need to break down the problem into two parts: the distance she runs in the first 4 hours and the distance she runs in the next 4 hours.</p>
+                  <p>First, let's calculate the distance she runs in the first 4 hours:</p>
+                  <p>- Speed: 12 kilometers per hour<br>- Time: 4 hours<br>- Distance = Speed × Time<br>- Distance = 12 km/h × 4 h<br>- Distance = 48 kilometers</p>
+                  <p>Next, let's calculate the distance she runs in the next 4 hours:</p>
+                  <p>- Speed: 6 kilometers per hour<br>- Time: 4 hours<br>- Distance = Speed × Time<br>- Distance = 6 km/h × 4 h<br>- Distance = 24 kilometers</p>
+                  <p>Now, we add the distances from both parts to find the total distance she can run in 8 hours:</p>
+                  <p>- Total distance = Distance in the first 4 hours + Distance in the next 4 hours<br>- Total distance = 48 km + 24 km<br>- Total distance = 72 kilometers</p>
+                  <p>Therefore, Lily can run <strong>72 kilometers</strong> in 8 hours.</p>
+                </div>
               </div>
             </div>
           </div>
-          <div class="column is-6">
-            <div class="quick-card">
-              <div class="quick-box">
-                <span class="status-tag">Observation</span>
-                <h3>Stable reasoning with much lower latency</h3>
-                <p>In the appendix example, vanilla LLaDA takes <strong>12.04s</strong> and STDec takes <strong>2.55s</strong>, while both produce the same final answer of <strong>72 kilometers</strong> and closely matched reasoning steps.</p>
+        </div>
+
+        <div class="case-block">
+          <div class="case-question">
+            <span class="status-tag muted">Question 2</span>
+            <h3>Case study on GSM8K with LLaDA-8B-Instruct</h3>
+            <p>Joy can read 8 pages of a book in 20 minutes. How many hours will it take her to read 120 pages?</p>
+          </div>
+          <div class="columns is-variable is-5 case-columns">
+            <div class="column is-6">
+              <div class="case-answer">
+                <div class="case-answer-head">LLaDA-8B-Instruct <span>11.94 secs</span></div>
+                <div class="case-answer-body">
+                  <p>To determine how many hours it will take Joy to read 120 pages, we need to follow these steps:</p>
+                  <p>Step 1: Calculate Joy's reading rate in pages per minute.<br>Joy reads 8 pages in 20 minutes. Therefore, her reading rate is 8 / 20 = 0.4 pages per minute.</p>
+                  <p>Step 2: Determine the total time required to read 120 pages.<br>Since Joy's reading rate is 0.4 pages per minute, the time required to read 120 pages is 120 / 0.4 = 300 minutes.</p>
+                  <p>Step 3: Convert the total time from minutes to hours.<br>There are 60 minutes in an hour, so 300 / 60 = 5 hours.</p>
+                  <p>Therefore, it will take Joy 5 hours to read 120 pages.</p>
+                </div>
+              </div>
+            </div>
+            <div class="column is-6">
+              <div class="case-answer case-answer-ours">
+                <div class="case-answer-head">+ STDec <span>2.60 secs (4.59×)</span></div>
+                <div class="case-answer-body">
+                  <p>To determine how many hours it will take Joy to read 120 pages, we need to follow these steps:</p>
+                  <p>Step 1: Calculate Joy's reading rate in pages per minute.<br>Joy reads 8 pages in 20 minutes. Therefore, her reading rate is 8 / 20 = 0.4 pages per minute.</p>
+                  <p>Step 2: Determine the total time required to read 120 pages.<br>Since Joy reads at a rate of 0.4 pages per minute, the total time required to read 120 pages is 120 / 0.4 = 300 minutes.</p>
+                  <p>Step 3: Convert the total time from minutes to hours.<br>Total time in hours = 300 / 60 = 5 hours.</p>
+                  <p>Final answer: 5.</p>
+                </div>
               </div>
             </div>
           </div>

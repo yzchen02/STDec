@@ -191,49 +191,50 @@ a:hover {
   background: #fff;
 }
 
-.teaser-grid .column,
 .motivation-grid .column {
   display: flex;
 }
 
-.teaser-grid .panel-card,
 .motivation-grid .panel-card {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.teaser-media {
-  max-width: 100%;
-  margin: 0 auto 0.5rem;
-  width: 100%;
+.highlight-combo {
+  display: flex;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  overflow: hidden;
 }
 
-.teaser-media-small {
-  max-width: 100%;
-}
-
-.teaser-media img {
-  display: block;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.teaser-grid .teaser-media a {
+.highlight-pane {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1.44 / 1;
-  padding: 0.3rem;
-  border: 1px solid var(--border-color);
+  min-height: 320px;
+  padding: 0.25rem;
   background: #fff;
 }
 
-.teaser-grid .teaser-media img {
+.highlight-pane--radar {
+  flex: 0 0 58%;
+  border-right: 1px solid var(--border-color);
+}
+
+.highlight-pane--case {
+  flex: 0 0 42%;
+}
+
+.highlight-pane img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  margin-bottom: 0;
+  object-position: center center;
+}
+
+.highlight-pane--case img {
+  object-fit: cover;
 }
 
 .motivation-grid .panel-card > a {
@@ -263,8 +264,8 @@ a:hover {
 
 .teaser-caption {
   max-width: 880px;
-  margin: 0.15rem auto 0;
-  text-align: justify;
+  margin: 0.5rem auto 0;
+  text-align: left;
 }
 
 .motivation-grid .panel-caption {
@@ -304,7 +305,8 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
-  margin-bottom: 1rem;
+  max-width: 760px;
+  margin: 0 auto 1rem;
 }
 
 .metric-card {
@@ -333,7 +335,11 @@ a:hover {
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.4rem;
-  max-width: 760px;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .table-wrap {
@@ -400,6 +406,74 @@ a:hover {
   background: #fff;
   padding: 1rem;
   height: 100%;
+}
+
+.case-block + .case-block {
+  margin-top: 1.25rem;
+}
+
+.case-question {
+  margin-bottom: 0.8rem;
+  text-align: left;
+}
+
+.case-question h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.case-question p {
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.case-columns .column {
+  display: flex;
+}
+
+.case-answer {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-answer-ours {
+  border-color: var(--accent-blue-soft-strong);
+  background: var(--accent-blue-soft);
+}
+
+.case-answer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.8rem 0.95rem;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.case-answer-head span {
+  color: var(--accent-blue-strong);
+  white-space: nowrap;
+}
+
+.case-answer-body {
+  padding: 0.95rem;
+  color: #374151;
+  font-size: 0.93rem;
+  line-height: 1.58;
+}
+
+.case-answer-body p {
+  margin-bottom: 0.8rem;
+}
+
+.case-answer-body p:last-child {
+  margin-bottom: 0;
 }
 
 .status-tag {
@@ -484,8 +558,22 @@ pre {
     max-width: 100%;
   }
 
-  .teaser-media-small {
-    max-width: 100%;
+  .highlight-combo {
+    flex-direction: column;
+  }
+
+  .highlight-pane {
+    min-height: 250px;
+  }
+
+  .highlight-pane--radar {
+    flex-basis: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .highlight-pane--case {
+    flex-basis: auto;
   }
 
   .motivation-grid .panel-caption {
