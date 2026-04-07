@@ -44,6 +44,19 @@ a:hover {
   padding-right: 0.75rem;
 }
 
+.hero-logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.65rem;
+}
+
+.hero-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(255, 94, 77, 0.14));
+}
+
 .publication-title {
   color: var(--text-primary);
   line-height: 1.14;
@@ -57,19 +70,6 @@ a:hover {
   word-break: normal;
   overflow-wrap: normal;
   text-wrap: balance;
-}
-
-.title-logo {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-  vertical-align: -0.12em;
-  margin-right: 0.28rem;
-  filter: drop-shadow(0 6px 14px rgba(255, 94, 77, 0.14));
-}
-
-.publication-title span {
-  display: inline-block;
 }
 
 .accent-mark {
@@ -584,6 +584,11 @@ pre {
 }
 
 @media screen and (max-width: 768px) {
+  .hero-logo {
+    width: 56px;
+    height: 56px;
+  }
+
   .publication-title {
     font-size: 1.58rem;
     max-width: 100%;
