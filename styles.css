@@ -261,9 +261,9 @@ a:hover {
 }
 
 .teaser-caption {
-  width: calc(100% + 24px);
+  width: calc(100% + 72px);
   max-width: none;
-  margin: 0.4rem -12px 0;
+  margin: 0.4rem -12px 0 -60px;
   text-align: justify;
   text-align-last: left;
   line-height: 1.6;
