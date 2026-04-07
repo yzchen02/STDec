@@ -38,7 +38,6 @@
       <div class="hero-body">
         <div class="container is-max-desktop has-text-centered">
           <h1 class="title is-1 publication-title">
-            <span class="accent-mark"><i class="fas fa-wave-square" aria-hidden="true"></i></span>
             STDec: Spatio-Temporal Stability Guided Decoding for dLLMs
           </h1>
 
@@ -84,9 +83,11 @@
         <div class="columns is-variable is-5">
           <div class="column is-12">
             <div class="panel-card">
-              <a href="assets/figures/radar.pdf" target="_blank" rel="noopener">
-                <img src="images/teaser.png" alt="STDec teaser" loading="lazy">
-              </a>
+              <div class="teaser-media">
+                <a href="assets/figures/radar.pdf" target="_blank" rel="noopener">
+                  <img src="images/teaser.png" alt="STDec teaser" loading="lazy">
+                </a>
+              </div>
               <p class="panel-caption">
                 <strong>Teaser of STDec.</strong> Across textual reasoning and multimodal understanding benchmarks, STDec substantially improves decoding throughput while preserving comparable generation quality. The strongest long-context result reaches <strong>47.80×</strong> speedup on GPQA with LLaDA-8B-Instruct, and the method remains compatible with cache-based acceleration.
               </p>

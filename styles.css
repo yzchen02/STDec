@@ -1,8 +1,8 @@
 :root {
-  --accent-blue: #7fa8d8;
+  --accent-blue: #8db2dc;
   --accent-blue-strong: #5f7fae;
-  --accent-blue-soft: #edf4fc;
-  --accent-blue-soft-strong: #dbe8f8;
+  --accent-blue-soft: #eef5fd;
+  --accent-blue-soft-strong: #dde9f7;
   --text-primary: #1f2937;
   --text-secondary: #374151;
   --border-color: #e5e7eb;
@@ -47,11 +47,16 @@ a:hover {
 .publication-title {
   color: var(--text-primary);
   line-height: 1.14;
-  margin-bottom: 0.35rem !important;
+  margin: 0 auto 0.35rem !important;
   letter-spacing: -0.01em;
   font-weight: 600 !important;
   font-size: 1.95rem;
   font-family: "Google Sans", "Noto Sans", "Castoro", sans-serif !important;
+  text-align: center !important;
+  max-width: 900px;
+  word-break: normal;
+  overflow-wrap: normal;
+  text-wrap: balance;
 }
 
 .accent-mark {
@@ -67,6 +72,7 @@ a:hover {
   color: var(--text-secondary);
   margin-bottom: 0;
   font-weight: 400 !important;
+  text-align: center;
 }
 
 .publication-authors {
@@ -89,14 +95,14 @@ a:hover {
   border-radius: 999px;
   min-width: 126px;
   font-weight: 600;
-  background: var(--accent-blue-strong);
+  background: #222;
   color: #fff;
   border: none;
 }
 
 .publication-links .button.is-light,
 .publication-links .button.is-static {
-  background: var(--accent-blue-strong);
+  background: #222;
   color: #fff;
   border: none;
 }
@@ -108,7 +114,7 @@ a:hover {
 
 .publication-links .button:hover,
 .publication-links .button.is-light:hover {
-  background: #476792;
+  background: #111;
   color: #fff;
 }
 
@@ -135,7 +141,7 @@ a:hover {
 }
 
 .section.is-light {
-  background: #f7fbff;
+  background: #f8fafc;
 }
 
 .section-title {
@@ -148,8 +154,8 @@ a:hover {
 .has-text-centered.title.is-3::after {
   content: "";
   display: block;
-  width: 76px;
-  height: 3px;
+  width: 68px;
+  height: 2px;
   margin: 0.55rem auto 0;
   border-radius: 999px;
   background: var(--accent-blue);
@@ -183,6 +189,17 @@ a:hover {
   border: none;
   margin-bottom: 0.75rem;
   background: #fff;
+}
+
+.teaser-media {
+  max-width: 760px;
+  margin: 0 auto 0.75rem;
+}
+
+.teaser-media img {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .panel-caption {
@@ -371,10 +388,15 @@ pre {
 @media screen and (max-width: 768px) {
   .publication-title {
     font-size: 1.58rem;
+    max-width: 100%;
   }
 
   .metric-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .teaser-media {
+    max-width: 100%;
   }
 }
 
