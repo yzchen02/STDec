@@ -201,46 +201,35 @@ a:hover {
   width: 100%;
 }
 
-.highlight-combo {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  border: none;
-  background: transparent;
-  overflow: hidden;
-  min-height: 350px;
+.highlight-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(240px, 0.72fr);
+  gap: 1.15rem;
+  align-items: center;
 }
 
-.highlight-pane {
+.highlight-figure {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 350px;
+  min-height: 300px;
   padding: 0;
   background: transparent;
 }
 
-.highlight-pane--radar {
-  flex: 0 0 60% !important;
-  border-right: 1px solid #e9eef5;
-}
-
-.highlight-pane--case {
-  flex: 0 0 40% !important;
-  min-width: 0;
-}
-
-.highlight-pane img {
+.highlight-figure img {
   width: 100%;
-  height: 100%;
+  max-width: 700px;
+  height: auto;
   object-fit: contain;
   object-position: center center;
   display: block;
 }
 
-.highlight-pane--case img {
-  object-fit: cover;
-  object-position: center center;
+.highlight-metrics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
 }
 
 .motivation-grid .panel-card > a {
@@ -305,14 +294,6 @@ a:hover {
 
 .motivation-intro {
   margin-bottom: 1rem;
-}
-
-.metric-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.8rem;
-  max-width: 760px;
-  margin: 0 auto 1rem;
 }
 
 .metric-card {
@@ -564,32 +545,19 @@ pre {
     max-width: 100%;
   }
 
-  .highlight-combo {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
+  .highlight-layout {
+    grid-template-columns: 1fr;
   }
 
-  .highlight-pane {
-    min-height: 240px;
+  .highlight-figure {
+    min-height: 220px;
   }
 
-  .highlight-pane--radar {
-    flex: 0 0 60% !important;
-    border-right: 1px solid #e9eef5;
-  }
-
-  .highlight-pane--case {
-    flex: 0 0 40% !important;
+  .highlight-figure img {
+    max-width: 100%;
   }
 
   .motivation-grid .panel-caption {
     min-height: 0;
-  }
-}
-
-@media screen and (max-width: 520px) {
-  .metric-grid {
-    grid-template-columns: 1fr;
   }
 }

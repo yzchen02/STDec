@@ -80,13 +80,24 @@
 
     <section class="section is-light">
       <div class="container is-max-desktop">
-        <div class="highlight-combo">
-          <a class="highlight-pane highlight-pane--radar" href="assets/figures/radar.pdf" target="_blank" rel="noopener">
+        <div class="highlight-layout">
+          <a class="highlight-figure" href="assets/figures/radar.pdf" target="_blank" rel="noopener">
             <img src="images/teaser.png" alt="STDec teaser" loading="lazy">
           </a>
-          <a class="highlight-pane highlight-pane--case" href="assets/figures/visual.pdf" target="_blank" rel="noopener">
-            <img src="images/qualitative.png" alt="STDec qualitative preview" loading="lazy">
-          </a>
+          <div class="highlight-metrics">
+            <div class="metric-card">
+              <div class="metric-value">10.03×</div>
+              <div class="metric-label">average speedup on Dream-7B-Instruct</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">7.60×</div>
+              <div class="metric-label">average speedup on LLaDA-8B-Instruct</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">3.57×</div>
+              <div class="metric-label">average speedup on LaViDa-Reason</div>
+            </div>
+          </div>
         </div>
         <p class="panel-caption teaser-caption">
           <strong>Highlight of STDec.</strong> Compared to existing dLLM acceleration methods, STDec achieves up to <strong>47.80×</strong> long-context speedup, delivers <strong>10.03×</strong> and <strong>7.60×</strong> average gains on Dream and LLaDA, and improves multimodal throughput to <strong>3.57×</strong> on LaViDa-Reason while preserving comparable generation quality.
@@ -161,21 +172,6 @@
     <section class="section">
       <div class="container is-max-desktop">
         <h2 class="title is-3 section-title has-text-centered">Main Results</h2>
-
-        <div class="metric-grid">
-          <div class="metric-card">
-            <div class="metric-value">10.03×</div>
-            <div class="metric-label">average speedup on Dream-7B-Instruct</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-value">7.60×</div>
-            <div class="metric-label">average speedup on LLaDA-8B-Instruct</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-value">3.57×</div>
-            <div class="metric-label">average speedup on LaViDa-Reason</div>
-          </div>
-        </div>
 
         <div class="exp-block">
           <div class="exp-title">Main textual reasoning results on Dream-7B-Instruct and LLaDA-8B-Instruct.</div>
