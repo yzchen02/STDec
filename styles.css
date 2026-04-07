@@ -203,24 +203,24 @@ a:hover {
 
 .highlight-combo {
   display: flex;
-  border: 1px solid var(--border-color);
-  background: #fff;
+  border: none;
+  background: transparent;
   overflow: hidden;
-  min-height: 360px;
+  min-height: 350px;
 }
 
 .highlight-pane {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 360px;
+  min-height: 350px;
   padding: 0;
-  background: #fff;
+  background: transparent;
 }
 
 .highlight-pane--radar {
   flex: 0 0 57%;
-  border-right: 1px solid var(--border-color);
+  border-right: 1px solid #e9eef5;
 }
 
 .highlight-pane--case {
@@ -237,6 +237,7 @@ a:hover {
 
 .highlight-pane--case img {
   object-fit: cover;
+  object-position: center center;
 }
 
 .motivation-grid .panel-card > a {
@@ -266,7 +267,7 @@ a:hover {
 
 .teaser-caption {
   max-width: 880px;
-  margin: 0.65rem auto 0;
+  margin: 0.4rem auto 0;
   text-align: left;
 }
 
@@ -572,7 +573,7 @@ pre {
   .highlight-pane--radar {
     flex-basis: auto;
     border-right: none;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #e9eef5;
   }
 
   .highlight-pane--case {
