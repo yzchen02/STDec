@@ -88,9 +88,6 @@
                   <img src="images/teaser.png" alt="STDec teaser" loading="lazy">
                 </a>
               </div>
-              <p class="panel-caption">
-                <strong>Teaser of STDec.</strong> Across textual reasoning and multimodal understanding benchmarks, STDec substantially improves decoding throughput while preserving comparable generation quality.
-              </p>
             </div>
           </div>
           <div class="column is-5">
@@ -100,12 +97,12 @@
                   <img src="images/qualitative.png" alt="STDec qualitative preview" loading="lazy">
                 </a>
               </div>
-              <p class="panel-caption">
-                <strong>Qualitative preview.</strong> STDec preserves the key semantics and object relations in LaViDa-Reason while reducing decoding time from <strong>99.17s</strong> to <strong>34.41s</strong>.
-              </p>
             </div>
           </div>
         </div>
+        <p class="panel-caption teaser-caption">
+          <strong>Teaser of STDec.</strong> The left figure summarizes the main throughput gains across textual reasoning and multimodal understanding benchmarks, while the right figure previews a LaViDa-Reason case study where STDec preserves key semantics and object relations but reduces decoding time from <strong>99.17s</strong> to <strong>34.41s</strong>.
+        </p>
       </div>
     </section>
 
@@ -179,10 +176,6 @@
 
         <div class="metric-grid">
           <div class="metric-card">
-            <div class="metric-value">47.80×</div>
-            <div class="metric-label">peak long-context speedup on GPQA with LLaDA</div>
-          </div>
-          <div class="metric-card">
             <div class="metric-value">10.03×</div>
             <div class="metric-label">average speedup on Dream-7B-Instruct</div>
           </div>
@@ -197,7 +190,7 @@
         </div>
 
         <div class="exp-block">
-          <div class="exp-title">Main textual reasoning results. Dream-7B-Instruct is shown on the left half, and LLaDA-8B-Instruct is shown on the right half.</div>
+          <div class="exp-title">Main textual reasoning results with two representative dLLMs. Dream-7B-Instruct is shown on the left, and LLaDA-8B-Instruct is shown on the right.</div>
           <div class="table-wrap">
             <table class="table is-bordered is-fullwidth result-table result-table-wide">
               <thead>
@@ -418,7 +411,7 @@
         </div>
 
         <div class="exp-block">
-          <div class="exp-title">Multimodal understanding results on LaViDa-Reason.</div>
+          <div class="exp-title">Main multimodal understanding results on LaViDa-Reason across three math-oriented vision-language benchmarks.</div>
           <div class="table-wrap">
             <table class="table is-bordered is-fullwidth result-table">
               <thead>
@@ -568,34 +561,23 @@
 
     <section class="section is-light">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 section-title has-text-centered">Qualitative Results</h2>
+        <h2 class="title is-3 section-title has-text-centered">Case Study</h2>
         <div class="columns is-variable is-5">
-          <div class="column is-12">
-            <div class="panel-card">
-              <a href="assets/figures/visual.pdf" target="_blank" rel="noopener">
-                <img src="images/qualitative.png" alt="STDec qualitative case study" loading="lazy">
-              </a>
-              <p class="panel-caption"><strong>Case study on multimodal understanding.</strong> On LaViDa-Reason, STDec preserves the same key objects and relative spatial relations in the generated scene description while reducing decoding time from <strong>99.17s</strong> to <strong>34.41s</strong> (<strong>2.88×</strong> speedup).</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="columns is-variable is-5 qualitative-subgrid">
           <div class="column is-6">
             <div class="status-card">
               <div class="status-box">
-                <span class="status-tag">Dream-7B-Instruct</span>
-                <h3>Same reasoning outcome, much faster decoding</h3>
-                <p>On GSM8K examples from the appendix, Dream with STDec keeps the same final boxed answer as the baseline while cutting latency from 11.59s to 2.30s on one example and from 11.25s to 3.59s on another.</p>
+                <span class="status-tag muted">Question</span>
+                <h3>Case study on GSM8K with LLaDA-8B-Instruct</h3>
+                <p>Lily can run 12 kilometers per hour for 4 hours. After that, she runs 6 kilometers per hour. How many kilometers can she run in 8 hours?</p>
               </div>
             </div>
           </div>
           <div class="column is-6">
             <div class="quick-card">
               <div class="quick-box">
-                <span class="status-tag muted">LLaDA-8B-Instruct</span>
-                <h3>Stable content under earlier commitment</h3>
-                <p>Appendix case studies show that LLaDA with STDec preserves the original reasoning structure and final answer on GSM8K while speeding decoding from 12.04s to 2.55s and from 11.94s to 2.60s.</p>
+                <span class="status-tag">Observation</span>
+                <h3>Stable reasoning with much lower latency</h3>
+                <p>In the appendix example, vanilla LLaDA takes <strong>12.04s</strong> and STDec takes <strong>2.55s</strong>, while both produce the same final answer of <strong>72 kilometers</strong> and closely matched reasoning steps.</p>
               </div>
             </div>
           </div>

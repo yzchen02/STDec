@@ -204,8 +204,8 @@ a:hover {
 }
 
 .teaser-media {
-  max-width: 700px;
-  margin: 0 auto 0.75rem;
+  max-width: 100%;
+  margin: 0 auto 0.5rem;
   width: 100%;
 }
 
@@ -223,8 +223,8 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 16 / 10;
-  padding: 0.45rem;
+  aspect-ratio: 1.44 / 1;
+  padding: 0.3rem;
   border: 1px solid var(--border-color);
   background: #fff;
 }
@@ -261,13 +261,16 @@ a:hover {
   line-height: 1.55;
 }
 
-.teaser-grid .panel-caption {
-  margin-top: auto;
+.teaser-caption {
+  max-width: 880px;
+  margin: 0.15rem auto 0;
+  text-align: justify;
 }
 
 .motivation-grid .panel-caption {
   margin-top: auto;
   min-height: 5.8em;
+  text-align: center;
 }
 
 .contrib-content {
@@ -299,7 +302,7 @@ a:hover {
 
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
   margin-bottom: 1rem;
 }
@@ -330,6 +333,7 @@ a:hover {
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.4rem;
+  max-width: 760px;
 }
 
 .table-wrap {
@@ -369,14 +373,14 @@ a:hover {
 
 .result-table th:first-child,
 .result-table td:first-child {
-  text-align: left;
+  text-align: center;
 }
 
 .result-table .group-row td {
   background: #f3f7fc;
   color: var(--text-primary);
   font-weight: 700;
-  text-align: left;
+  text-align: center;
 }
 
 .result-table .baseline-row td {
