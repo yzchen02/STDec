@@ -45,10 +45,10 @@ a:hover {
 }
 
 .publication-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: 0.7rem;
   color: var(--text-primary);
   line-height: 1.14;
   margin: 0 auto 0.35rem !important;
@@ -56,8 +56,9 @@ a:hover {
   font-weight: 600 !important;
   font-size: 1.95rem;
   font-family: "Google Sans", "Noto Sans", "Castoro", sans-serif !important;
-  text-align: center !important;
+  text-align: left !important;
   max-width: 900px;
+  width: fit-content;
   word-break: normal;
   overflow-wrap: normal;
   text-wrap: balance;
@@ -68,11 +69,14 @@ a:hover {
   height: 50px;
   flex: 0 0 50px;
   object-fit: contain;
+  align-self: start;
+  margin-top: 0.08em;
   filter: drop-shadow(0 6px 14px rgba(255, 94, 77, 0.14));
 }
 
 .publication-title span {
   display: inline-block;
+  text-align: left;
 }
 
 .accent-mark {
@@ -591,12 +595,14 @@ pre {
     gap: 0.5rem;
     font-size: 1.58rem;
     max-width: 100%;
+    width: 100%;
   }
 
   .title-logo {
     width: 40px;
     height: 40px;
     flex-basis: 40px;
+    margin-top: 0.06em;
   }
 
   .metric-grid {
